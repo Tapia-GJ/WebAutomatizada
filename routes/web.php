@@ -11,6 +11,14 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/project', function () {
+    return view('project');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', [Settings\ProfileController::class, 'edit'])->name('settings.profile.edit');
     Route::put('settings/profile', [Settings\ProfileController::class, 'update'])->name('settings.profile.update');
@@ -21,4 +29,4 @@ Route::middleware(['auth'])->group(function () {
     Route::put('settings/appearance', [Settings\AppearanceController::class, 'update'])->name('settings.appearance.update');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
